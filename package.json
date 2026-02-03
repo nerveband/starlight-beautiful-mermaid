@@ -1,0 +1,36 @@
+{
+  "name": "starlight-beautiful-mermaid",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format esm",
+    "test": "vitest run",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "astro": ">=4.0.0",
+    "@astrojs/markdown-remark": ">=5.0.0",
+    "remark": ">=15.0.0",
+    "rehype": ">=13.0.0"
+  },
+  "dependencies": {
+    "beautiful-mermaid": "^0.3.0",
+    "unist-util-visit": "^5.0.0",
+    "hastscript": "^9.0.0",
+    "gray-matter": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "tsup": "^8.0.0",
+    "vitest": "^1.6.0",
+    "@types/node": "^20.0.0",
+    "unified": "^11.0.0"
+  }
+}
