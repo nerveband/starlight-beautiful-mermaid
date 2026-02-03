@@ -7,11 +7,11 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ashrafali/starlight-beautiful-mermaid.git"
+    "url": "https://github.com/nerveband/starlight-beautiful-mermaid.git"
   },
-  "homepage": "https://github.com/ashrafali/starlight-beautiful-mermaid#readme",
+  "homepage": "https://github.com/nerveband/starlight-beautiful-mermaid#readme",
   "bugs": {
-    "url": "https://github.com/ashrafali/starlight-beautiful-mermaid/issues"
+    "url": "https://github.com/nerveband/starlight-beautiful-mermaid/issues"
   },
   "files": [
     "dist",
