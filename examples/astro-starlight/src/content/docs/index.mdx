@@ -1,0 +1,25 @@
+---
+title: "Welcome"
+---
+
+# Starlight + Beautiful Mermaid
+
+```mermaid
+flowchart TD
+  A[Start] --> B{Theme}
+  B -->|Light| C[Light SVG]
+  B -->|Dark| D[Dark SVG]
+```
+
+```mermaid theme="forest"
+flowchart LR
+  A --> B
+```
+
+```mermaid config='{"theme":"forest","themeVariables":{"primaryColor":"#0ea5e9"}}'
+sequenceDiagram
+  participant User
+  participant Docs
+  User->>Docs: Render Mermaid
+  Docs-->>User: SVG output
+```
