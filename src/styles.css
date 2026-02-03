@@ -1,0 +1,17 @@
+.bm-mermaid {
+  margin: 0;
+}
+
+.bm-mermaid .mermaid-themes {
+  display: block;
+}
+
+.bm-mermaid .mermaid-themes [data-theme="light"],
+.bm-mermaid .mermaid-themes [data-theme="dark"] {
+  display: none;
+}
+
+:root[data-theme="light"] .bm-mermaid .mermaid-themes [data-theme="light"],
+:root[data-theme="dark"] .bm-mermaid .mermaid-themes [data-theme="dark"] {
+  display: block;
+}

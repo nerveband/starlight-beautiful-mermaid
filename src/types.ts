@@ -14,3 +14,12 @@ export type PluginOptions = {
 };
 
 export type MermaidOptions = Record<string, unknown>;
+
+export type ThemeSelectors = {
+  light: string;
+  dark: string;
+};
+
+export type IntegrationOptions = PluginOptions & {
+  themeSelectors?: Partial<ThemeSelectors>;
+};
