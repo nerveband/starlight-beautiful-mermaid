@@ -1,5 +1,4 @@
 import type { AstroIntegration } from "astro";
-import { readFileSync } from "node:fs";
 import rehypeBeautifulMermaid from "./rehype-beautiful-mermaid";
 import type { IntegrationOptions, ThemeSelectors } from "./types";
 
@@ -8,16 +7,26 @@ const DEFAULT_THEME_SELECTORS: ThemeSelectors = {
   dark: ":root[data-theme=\"dark\"]"
 };
 
-const buildCss = (selectors: ThemeSelectors) => {
-  const baseCss = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
-  const scopedCss = baseCss.replace(
-    /:root\[data-theme="light"\]|:root\[data-theme="dark"\]/g,
-    (match) => {
-      return match.includes("light") ? selectors.light : selectors.dark;
-    }
-  );
+const buildOverrideCss = (selectors: ThemeSelectors) => {
+  return `${selectors.light} .bm-mermaid .mermaid-themes [data-theme="light"],\n` +
+    `${selectors.dark} .bm-mermaid .mermaid-themes [data-theme="dark"] {\n` +
+    "  display: block;\n" +
+    "}";
+};
 
-  return `<style>${scopedCss}</style>`;
+const buildInjectScript = (selectors: ThemeSelectors) => {
+  const baseImport = 'import "starlight-beautiful-mermaid/styles.css";';
+  const hasOverrides =
+    selectors.light !== DEFAULT_THEME_SELECTORS.light ||
+    selectors.dark !== DEFAULT_THEME_SELECTORS.dark;
+
+  if (!hasOverrides) {
+    return baseImport;
+  }
+
+  const overrideCss = buildOverrideCss(selectors);
+  const encoded = encodeURIComponent(overrideCss);
+  return `${baseImport}\nimport "data:text/css,${encoded}";`;
 };
 
 const beautifulMermaid = (options: IntegrationOptions = {}): AstroIntegration => {
@@ -37,7 +46,7 @@ const beautifulMermaid = (options: IntegrationOptions = {}): AstroIntegration =>
           }
         });
 
-        injectScript("page-ssr", buildCss(themeSelectors));
+        injectScript("page-ssr", buildInjectScript(themeSelectors));
       }
     }
   };

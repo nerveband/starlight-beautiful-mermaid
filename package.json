@@ -23,7 +23,8 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./styles.css": "./dist/styles.css"
   },
   "scripts": {
     "build": "tsup src/index.ts --dts --format esm && cp src/styles.css dist/styles.css",

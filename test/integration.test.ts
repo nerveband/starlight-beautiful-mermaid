@@ -40,16 +40,17 @@ describe("beautifulMermaid integration", () => {
     expect(pluginEntry[0]).toBe(rehypeBeautifulMermaid);
 
     expect(ctx.injectScript).toHaveBeenCalled();
-    const css = ctx.injectScript.mock.calls[0][1] as string;
-    expect(css).toContain(":root[data-theme=\"light\"]");
-    expect(css).toContain(":root[data-theme=\"dark\"]");
+    const script = ctx.injectScript.mock.calls[0][1] as string;
+    expect(script).toContain("import \"starlight-beautiful-mermaid/styles.css\";");
   });
 
   it("allows overriding selectors", async () => {
     const ctx = await runSetup({ themeSelectors: { light: ".light", dark: ".dark" } });
 
-    const css = ctx.injectScript.mock.calls[0][1] as string;
-    expect(css).toContain(".light");
-    expect(css).toContain(".dark");
+    const script = ctx.injectScript.mock.calls[0][1] as string;
+    expect(script).toContain("import \"starlight-beautiful-mermaid/styles.css\";");
+    const overrideCss = `.light .bm-mermaid .mermaid-themes [data-theme=\"light\"],\n.dark .bm-mermaid .mermaid-themes [data-theme=\"dark\"] {\n  display: block;\n}`;
+    const encoded = encodeURIComponent(overrideCss);
+    expect(script).toContain(`import \"data:text/css,${encoded}\";`);
   });
 });
