@@ -13,6 +13,12 @@
   "bugs": {
     "url": "https://github.com/ashrafali/starlight-beautiful-mermaid/issues"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
