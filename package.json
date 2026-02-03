@@ -1,7 +1,18 @@
 {
   "name": "starlight-beautiful-mermaid",
+  "description": "Astro integration that renders Mermaid diagrams at build time with automatic light/dark theming.",
   "version": "0.1.0",
+  "license": "MIT",
+  "author": "Ashraf Ali",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashrafali/starlight-beautiful-mermaid.git"
+  },
+  "homepage": "https://github.com/ashrafali/starlight-beautiful-mermaid#readme",
+  "bugs": {
+    "url": "https://github.com/ashrafali/starlight-beautiful-mermaid/issues"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
