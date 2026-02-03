@@ -10,6 +10,7 @@ export type PluginOptions = {
   theme?: ThemeConfig;
   lightTheme?: ThemeConfig;
   darkTheme?: ThemeConfig;
+  failOnError?: boolean;
 };
 
 export type MermaidOptions = Record<string, unknown>;
